@@ -42,10 +42,10 @@ def decode(data, tree_root):
 
 def _make_tree(data):
     counter = Counter(data)
-    chars_and_freqs = sorted(counter.items(), key=lambda x: (x[1], x[0]))
+    chars_freqs = sorted(counter.items(), key=lambda x: (x[1], x[0]))
     nodes = []
     
-    for char, freq in chars_and_freqs:
+    for char, freq in chars_freqs:
         heappush(nodes, HuffmanTreeNode(char, freq))
     
     while len(nodes) > 1:
