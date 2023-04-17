@@ -3,7 +3,7 @@ from collections import Counter
 
 
 class HuffmanTreeNode:
-    def __init__(self, char, freq, left=None, right=None):
+    def __init__(self, freq, char=None, left=None, right=None):
         self.char = char
         self.freq = freq
         self.left = left
@@ -46,12 +46,12 @@ def _make_tree(data):
     nodes = []
     
     for char, freq in chars_freqs:
-        heappush(nodes, HuffmanTreeNode(char, freq))
+        heappush(nodes, HuffmanTreeNode(freq, char))
     
     while len(nodes) > 1:
         left = heappop(nodes)
         right = heappop(nodes)
-        heappush(nodes, HuffmanTreeNode(None, left.freq+right.freq, left, right))
+        heappush(nodes, HuffmanTreeNode(left.freq+right.freq, left=left, right=right))
     
     return nodes[0]
 
